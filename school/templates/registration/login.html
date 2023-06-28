@@ -1,27 +1,27 @@
 {% extends '_base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}Log In{% endblock title %}
 
 {% block content %}
-  <h1>Войти в систему</h1>
-  {% if form.errors %}
-    <p>
-        Ваш логин и пароль не совпадают.
-        Попробуйте еще раз.
-    </p>
-  {% else %}
-    <p>Пожалуйста, заполните форму, чтобы войти.
-        Если у вас нет аккаунта <a href="{% url 'signup' %}">можете зарегистрироваться здесь.</a>
-    </p>
-    <p>
-        <a href="{% url 'password_reset' %}">Забыли пароль?</a>
-    </p>
-  {% endif %}
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Войти в систему">
-        </form>
-    </div>
+<h1>Войти в систему</h1>
+{% if form.errors %}
+<p>
+  Ваш логин и пароль не совпадают.
+  Попробуйте еще раз.
+</p>
+{% else %}
+<p>Пожалуйста, заполните форму, чтобы войти.
+  Если у вас нет аккаунта <a href="{% url 'signup' %}">можете зарегистрироваться здесь.</a>
+</p>
+<p>
+  <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+</p>
+{% endif %}
+<div>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Войти в систему">
+  </form>
+</div>
 {% endblock content %}

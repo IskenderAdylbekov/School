@@ -13,6 +13,11 @@ urlpatterns = [
     path(
         "student/<int:pk>/edit/", views.StudentEditView.as_view(), name="student_edit"
     ),
+    path(
+        "student/<int:pk>/delete/",
+        views.StudentDeleteView.as_view(),
+        name="student_delete",
+    ),
     path("class/", views.ClassCreateView.as_view(), name="class"),
     path("send-email/", views.send_email, name="send_email"),
 ]

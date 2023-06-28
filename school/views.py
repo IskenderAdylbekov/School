@@ -67,6 +67,12 @@ class StudentEditView(generic.UpdateView):
         return super().form_valid(form)
 
 
+class StudentDeleteView(generic.DeleteView):
+    model = Student
+    success_url = reverse_lazy("student_list")
+    template_name = "school/student_delete.html"
+
+
 class ClassCreateView(generic.CreateView):
     model = Class
     fields = "__all__"

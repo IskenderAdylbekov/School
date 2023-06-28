@@ -21,6 +21,7 @@
 </ul>
 
 <a href="{% url 'student_edit' student.pk %}">Edit student</a>|
+<a href="{% url 'student_delete' student.pk %}">Delete student</a>|
 <a href="{% url 'student_list' %}">Back to Student List</a>|
 <a href="{% url 'send_email' %}">Send Email</a>
 {% endblock %}

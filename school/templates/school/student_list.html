@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}Ученики{% endblock title %}
 
 {% block content %}
@@ -8,7 +8,7 @@
   <h1>Список всех учеников</h1>
   <form method="GET" action="{% url 'student_list' %}">
     <input type="text" name="search" placeholder="Search...">
-    <button type="submit">Search</button>
+    <button class="btn btn-success" type="submit">Search</button>
   </form>
 
   {% for student in students %}
