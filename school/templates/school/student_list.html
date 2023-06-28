@@ -11,7 +11,7 @@
     <li><a href="{{ student.get_absolute_url }}">{{ student.full_name }}</a></li>
 
     <li>
-      {% for class.obj in student.student_class.all %}
+      {% for class_obj in student.student_class.all %}
       {{ class_obj.name }}
       {% empty %}
       Не привязан к классу
@@ -21,7 +21,8 @@
   {% empty %}
   Список пуст
   {% endfor %}
-  <a href="{% url 'student_create' %}">Create Student</a>
+  <a href="{% url 'student_create' %}">Create Student</a>|
+  <a href="{% url 'class' %}">Create Class</a>
 </div>
 
 {% endblock content %}

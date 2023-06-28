@@ -12,8 +12,8 @@ class Student(models.Model):
     sex = models.CharField(max_length=10)
     photo = models.ImageField(upload_to="student_photos/", blank=True, null=True)
 
-    # def get_absolute_url(self):
-    #     return reverse("student_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("student_detail", kwargs={"pk": self.pk})
 
     def __str__(self) -> str:
         return self.full_name

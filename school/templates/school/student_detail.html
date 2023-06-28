@@ -1,19 +1,25 @@
 {% extends '_base.html' %}
 
 {% block content %}
-  <h1>Student Details</h1>
+<h1>Student Details</h1>
 
-  <ul>
-    <li><strong>Full Name:</strong> {{ student.full_name }}</li>
-    <li><strong>Mail:</strong> {{ student.mail }}</li>
-    <li><strong>Date of Birth:</strong> {{ student.date_of_birth }}</li>
-    <li><strong>Class:</strong> {{ student.student_class.name }}</li>
-    <li><strong>Address:</strong> {{ student.address }}</li>
-    <li><strong>Sex:</strong> {{ student.sex }}</li>
-    {% if student.photo %}
-      <li><strong>Photo:</strong> <img src="{{ student.photo.url }}" alt="Student Photo"></li>
-    {% endif %}
-  </ul>
+<ul>
+  <li><strong>Full Name:</strong> {{ student.full_name }}</li>
+  <li><strong>Mail:</strong> {{ student.mail }}</li>
+  <li><strong>Date of Birth:</strong> {{ student.date_of_birth }}</li>
+  <li><strong>
+      {% for class_obj in student.student_class.all %}
+      Class:</strong> {{ class_obj.name }}
+    {% empty %}
+    Не привязан к классу
+    {% endfor %}</li>
+  <li><strong>Address:</strong> {{ student.address }}</li>
+  <li><strong>Sex:</strong> {{ student.sex }}</li>
+  {% if student.photo %}
+  <li><strong>Photo:</strong> <img src="{{ student.photo.url }}" alt="Student Photo"></li>
+  {% endif %}
+</ul>
 
-  <a href="{% url 'students_list' %}">Back to Student List</a>
+<a href="{% url 'student_edit' student.pk %}">Edit student</a>|
+<a href="{% url 'student_list' %}">Back to Student List</a>
 {% endblock %}

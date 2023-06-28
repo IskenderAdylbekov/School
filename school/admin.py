@@ -32,6 +32,15 @@ class TeacherAdmin(UserAdmin):
     )
 
 
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "display_student_class")
+
+    def display_student_class(self, obj):
+        return ", ".join([str(class_obj) for class_obj in obj.student_class.all()])
+
+    display_student_class.short_description = "Student Class"
+
+
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Student)
 admin.site.register(Class)
