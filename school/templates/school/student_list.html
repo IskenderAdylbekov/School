@@ -1,0 +1,27 @@
+{% extends '_base.html' %}
+
+{% block title %}Ученики{% endblock title %}
+
+{% block content %}
+
+<div>
+  <h1>Список всех учеников</h1>
+  {% for student in students %}
+  <ul>
+    <li><a href="{{ student.get_absolute_url }}">{{ student.full_name }}</a></li>
+
+    <li>
+      {% for class.obj in student.student_class.all %}
+      {{ class_obj.name }}
+      {% empty %}
+      Не привязан к классу
+      {% endfor %}
+    </li>
+  </ul>
+  {% empty %}
+  Список пуст
+  {% endfor %}
+  <a href="{% url 'student_create' %}">Create Student</a>
+</div>
+
+{% endblock content %}
