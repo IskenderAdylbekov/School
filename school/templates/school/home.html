@@ -9,7 +9,7 @@
 <p>
     {% if user.is_authenticated %}
 <p>
-    Добро пожаловать, {{ user.first_name}}|
+    Добро пожаловать, {{ user.username}}|
     <a href="{% url 'logout' %}">Выйти</a>
 </p>
 {% else %}

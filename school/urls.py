@@ -14,4 +14,5 @@ urlpatterns = [
         "student/<int:pk>/edit/", views.StudentEditView.as_view(), name="student_edit"
     ),
     path("class/", views.ClassCreateView.as_view(), name="class"),
+    path("send-email/", views.send_email, name="send_email"),
 ]

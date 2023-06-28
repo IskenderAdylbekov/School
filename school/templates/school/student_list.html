@@ -6,6 +6,11 @@
 
 <div>
   <h1>Список всех учеников</h1>
+  <form method="GET" action="{% url 'student_list' %}">
+    <input type="text" name="search" placeholder="Search...">
+    <button type="submit">Search</button>
+  </form>
+
   {% for student in students %}
   <ul>
     <li><a href="{{ student.get_absolute_url }}">{{ student.full_name }}</a></li>
