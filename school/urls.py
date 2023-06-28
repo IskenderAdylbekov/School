@@ -18,6 +18,10 @@ urlpatterns = [
         views.StudentDeleteView.as_view(),
         name="student_delete",
     ),
-    path("class/", views.ClassCreateView.as_view(), name="class"),
+    path("class/create", views.ClassCreateView.as_view(), name="class_create"),
     path("send-email/", views.send_email, name="send_email"),
+    path(
+        "class/<int:pk>/delete/", views.ClassDeleteView.as_view(), name="class_delete"
+    ),
+    path("class/", views.ClassListView.as_view(), name="class_list"),
 ]

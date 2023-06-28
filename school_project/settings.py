@@ -142,4 +142,4 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "localhost"
 
 MEDIA_URL = "/media/"  # new
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "media"

@@ -25,9 +25,10 @@
   </ul>
   {% empty %}
   Список пуст
+
   {% endfor %}
-  <a href="{% url 'student_create' %}">Create Student</a>|
-  <a href="{% url 'class' %}">Create Class</a>
+  {% include '_pagination.html' %}
+  <a href="{% url 'student_create' %}">Create Student</a>
 </div>
 
 {% endblock content %}

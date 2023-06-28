@@ -36,7 +36,8 @@ class StudentCreate(forms.ModelForm):
 
 class EmailMessageForm(forms.Form):
     recipients = forms.CharField(
-        label="Recipients", help_text="Enter email addresses separated by commas"
+        label="Recipients",
+        help_text="Enter email addresses separated by commas",
     )
     subject = forms.CharField(label="Subject")
     message = forms.CharField(label="Message", widget=forms.Textarea)

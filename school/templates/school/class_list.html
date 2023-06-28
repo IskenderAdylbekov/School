@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Classes{% endblock title %}
+
+{% block content %}
+
+<div>
+    <h1>Список всех class</h1>
+
+    {% for class in classes %}
+    <ul>
+        <li><a href="{{ class.pk }}">{{ class.name }}</a></li>
+        <a href="{% url 'class_delete' class.pk %}">Delete</a>
+    </ul>
+    {% empty %}
+    No classes
+
+    {% include '_pagination.html' %}
+
+    {% endfor %}
+    <a href="{% url 'class_create' %}">Create Class</a>
+</div>
+
+{% endblock content %}

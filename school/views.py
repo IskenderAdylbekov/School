@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .forms import (
@@ -26,7 +27,7 @@ class SignUpView(generic.CreateView):
     template_name = "registration/signup.html"
 
 
-class StudentListView(generic.ListView):
+class StudentListView(LoginRequiredMixin, generic.ListView):
     model = Student
     template_name = "school/student_list.html"
     context_object_name = "students"
@@ -45,19 +46,19 @@ class StudentListView(generic.ListView):
         return queryset
 
 
-class StudentCreateView(generic.CreateView):
+class StudentCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = StudentCreate
     template_name = "school/student_create.html"
     success_url = reverse_lazy("student_list")
 
 
-class StudentDetailView(generic.DetailView):
+class StudentDetailView(LoginRequiredMixin, generic.DetailView):
     model = Student
     template_name = "school/student_detail.html"
     context_object_name = "student"
 
 
-class StudentEditView(generic.UpdateView):
+class StudentEditView(LoginRequiredMixin, generic.UpdateView):
     model = Student
     form_class = StudentCreate
     template_name = "school/student_edit.html"
@@ -67,17 +68,30 @@ class StudentEditView(generic.UpdateView):
         return super().form_valid(form)
 
 
-class StudentDeleteView(generic.DeleteView):
+class StudentDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Student
     success_url = reverse_lazy("student_list")
     template_name = "school/student_delete.html"
 
 
-class ClassCreateView(generic.CreateView):
+class ClassCreateView(LoginRequiredMixin, generic.CreateView):
     model = Class
     fields = "__all__"
     template_name = "school/class_create.html"
-    success_url = reverse_lazy("student_list")
+    success_url = reverse_lazy("class_list")
+
+
+class ClassDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Class
+    fields = "__all__"
+    template_name = "school/class_delete.html"
+    success_url = reverse_lazy("class_list")
+
+
+class ClassListView(LoginRequiredMixin, generic.ListView):
+    model = Class
+    template_name = "school/class_list.html"
+    context_object_name = "classes"
 
 
 def send_email(request):
